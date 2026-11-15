@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Biblioteca{% endblock %} · Biblioteca</title>
+    <link rel="stylesheet" href="{% static 'livraria/style.css' %}">
+</head>
+<body>
+    {% with rota=request.resolver_match.url_name %}
+    <div class="layout">
+        <aside class="sidebar">
+            <a class="logo" href="{% url 'livraria:home' %}">Biblioteca</a>
+            <nav>
+                <a href="{% url 'livraria:home' %}" class="{% if rota == 'home' %}ativo{% endif %}">Painel</a>
+                <a href="{% url 'livraria:livro_list' %}" class="{% if 'livro' in rota %}ativo{% endif %}">Livros</a>
+                <a href="{% url 'livraria:membro_list' %}" class="{% if 'membro' in rota %}ativo{% endif %}">Membros</a>
+                <a href="{% url 'livraria:emprestimo_list' %}" class="{% if 'emprestimo' in rota %}ativo{% endif %}">Empréstimos</a>
+                <a href="/admin/">Admin</a>
+            </nav>
+        </aside>
+        <main>
+            {% for message in messages %}
+                <div class="msg {{ message.tags }}">{{ message }}</div>
+            {% endfor %}
+            {% block content %}{% endblock %}
+        </main>
+    </div>
+    {% endwith %}
+</body>
+</html>

@@ -1,0 +1,20 @@
+{% extends "livraria/base.html" %}
+{% block title %}{{ livro.titulo }}{% endblock %}
+{% block content %}
+<h2>{{ livro.titulo }}</h2>
+<ul class="detalhes">
+    <li><strong>Autor:</strong> {{ livro.autor }}</li>
+    <li><strong>ISBN:</strong> {{ livro.isbn }}</li>
+    <li><strong>Ano:</strong> {{ livro.ano_publicacao }}</li>
+    <li><strong>Preço:</strong> R$ {{ livro.preco }}</li>
+    <li><strong>Exemplares disponíveis:</strong> {{ livro.exemplares_disponiveis }}</li>
+    <li><strong>Categorias:</strong>
+        {% for categoria in livro.categorias.all %}{{ categoria }}{% if not forloop.last %}, {% endif %}{% empty %}—{% endfor %}
+    </li>
+</ul>
+{% if livro.sinopse %}<p>{{ livro.sinopse }}</p>{% endif %}
+<p>
+    <a class="btn" href="{% url 'livraria:livro_update' livro.pk %}">Editar</a>
+    <a href="{% url 'livraria:livro_list' %}">Voltar</a>
+</p>
+{% endblock %}

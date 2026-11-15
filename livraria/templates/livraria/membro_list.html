@@ -1,0 +1,21 @@
+{% extends "livraria/base.html" %}
+{% block title %}Membros{% endblock %}
+{% block content %}
+<h2>Membros</h2>
+<p><a class="btn" href="{% url 'livraria:membro_create' %}">+ Novo membro</a></p>
+<table>
+    <thead><tr><th>Nome</th><th>E-mail</th><th>Status</th><th>Empréstimos ativos</th></tr></thead>
+    <tbody>
+    {% for membro in membros %}
+        <tr>
+            <td>{{ membro.nome }}</td>
+            <td>{{ membro.email }}</td>
+            <td>{% if membro.ativo %}<span class="pill ok">Ativo</span>{% else %}<span class="pill erro">Inativo</span>{% endif %}</td>
+            <td>{{ membro.emprestimos_ativos.count }}</td>
+        </tr>
+    {% empty %}
+        <tr><td colspan="4">Nenhum membro cadastrado.</td></tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,111 @@
+/* Admin no mesmo estilo do sistema: menu lateral indigo, fundo claro, cartões brancos (só tema claro) */
+:root {
+    color-scheme: light;
+    --primary: #3b3fa8;
+    --secondary: #3b3fa8;
+    --accent: #3b3fa8;
+    --primary-fg: #fff;
+    --header-bg: #fff;
+    --header-color: #6b6f8f;
+    --header-branding-color: #1f2347;
+    --header-link-color: #3b3fa8;
+    --breadcrumbs-bg: transparent;
+    --breadcrumbs-fg: #6b6f8f;
+    --breadcrumbs-link-fg: #3b3fa8;
+    --link-fg: #3b3fa8;
+    --link-hover-color: #2f3390;
+    --link-selected-fg: #3b3fa8;
+    --body-bg: #f5f6fb;
+    --body-fg: #1f2340;
+    --body-quiet-color: #6b6f8f;
+    --hairline-color: #e3e5f0;
+    --border-color: #e3e5f0;
+    --darkened-bg: #f0f1fa;
+    --selected-bg: #e6e8f7;
+    --selected-row: #eeedfe;
+    --button-bg: #3b3fa8;
+    --button-hover-bg: #2f3390;
+    --default-button-bg: #3b3fa8;
+    --default-button-hover-bg: #2f3390;
+    --object-tools-bg: #3b3fa8;
+    --object-tools-hover-bg: #2f3390;
+    --card-bg: #fff;
+}
+
+body { font-family: "Segoe UI", Arial, sans-serif; background: var(--body-bg); }
+
+/* ---------- layout com menu lateral ---------- */
+#container.com-menu { display: grid; grid-template-columns: 210px minmax(0, 1fr); min-height: 100vh; }
+.conteudo { min-width: 0; display: flex; flex-direction: column; }
+.conteudo .main { flex: 1; display: block; }
+
+.menu { background: #1f2347; padding: 20px 12px; position: sticky; top: 0; height: 100vh; overflow-y: auto; }
+.menu-logo { display: block; color: #fff; font-size: 1.25rem; font-weight: 600; text-decoration: none; padding: 0 10px; }
+.menu-sub { display: block; color: #8e93c4; font-size: .75rem; padding: 2px 10px 14px; }
+.menu nav { display: flex; flex-direction: column; gap: 3px; }
+.menu nav a { color: #c9cdea; text-decoration: none; padding: 9px 10px; border-radius: 8px; font-size: .9rem; }
+.menu nav a:hover { background: rgba(255, 255, 255, .08); }
+.menu nav a.ativo { background: #3b3fa8; color: #fff; }
+.menu-grupo { color: #8e93c4; font-size: .7rem; text-transform: uppercase; letter-spacing: .05em; padding: 14px 10px 4px; }
+
+/* ---------- barra superior ---------- */
+.com-menu #header { background: var(--header-bg); border-bottom: 1px solid var(--hairline-color); padding: 12px 40px; justify-content: flex-end; }
+.com-menu #branding { display: none; }
+#user-tools { color: var(--header-color); text-transform: none; font-size: .85rem; }
+#user-tools a, #user-tools button { color: var(--header-link-color); text-transform: none; }
+.breadcrumbs { padding: 14px 40px 0; font-size: .85rem; text-transform: none; }
+.breadcrumbs a { text-decoration: none; }
+.main .content { padding: 0; }
+#content { padding: 8px 40px 32px; }
+#content h1 { font-size: 1.5rem; font-weight: 600; color: var(--body-fg); margin: 8px 0 18px; }
+
+/* ---------- cartões ---------- */
+.module, #changelist .paginator, #changelist-filter, #recent-actions-module { background: var(--card-bg); border: 1px solid var(--hairline-color); border-radius: 10px; overflow: hidden; }
+.module { margin-bottom: 20px; }
+.module caption, .module h2, .module h3 { background: var(--darkened-bg); color: var(--body-quiet-color); font-size: .75rem; font-weight: 500; text-transform: uppercase; letter-spacing: .05em; padding: 10px 14px; }
+.module caption a:link, .module caption a:visited { color: var(--body-quiet-color); }
+.module table { width: 100%; }
+.module td, .module th { padding: 10px 14px; border-bottom: 1px solid var(--hairline-color); }
+#recent-actions-module h3 { color: var(--body-quiet-color); }
+#changelist-filter h2 { background: var(--darkened-bg); color: var(--body-quiet-color); }
+
+/* tabela de listagem */
+#result_list { background: var(--card-bg); }
+#result_list thead th { background: var(--card-bg); color: var(--body-quiet-color); font-size: .75rem; text-transform: uppercase; letter-spacing: .03em; border-bottom: 1px solid var(--hairline-color); }
+#result_list thead th a { color: var(--body-quiet-color); }
+#result_list tbody tr:hover td, #result_list tbody tr:hover th { background: var(--selected-row); }
+#toolbar { background: transparent; border: 0; padding: 0 0 12px; }
+#changelist-search input[type=text] { min-width: 260px; }
+
+/* ---------- botões e campos ---------- */
+.button, input[type=submit], input[type=button], .submit-row input, a.button { border-radius: 8px; }
+.object-tools a:link, .object-tools a:visited { border-radius: 99px; }
+input[type=text], input[type=password], input[type=email], input[type=number], input[type=url], input[type=date], input[type=time], textarea, select { border-radius: 8px; border: 1px solid var(--border-color); }
+fieldset.module { padding-bottom: 6px; }
+.form-row { border-bottom: 1px solid var(--hairline-color); }
+.messagelist { margin: 0 40px; padding-top: 16px; }
+
+/* ---------- login ---------- */
+.login #header { padding: 18px; justify-content: center; border: 0; background: transparent; }
+.login #branding { display: block; }
+.login #site-name a { color: var(--header-branding-color); font-weight: 600; }
+.login #container { border-radius: 12px; overflow: hidden; background: var(--card-bg); border: 1px solid var(--hairline-color); }
+
+/* ---------- celular ---------- */
+@media (max-width: 800px) {
+    #container.com-menu { grid-template-columns: 1fr; }
+    .menu { position: static; height: auto; }
+    .menu nav { flex-direction: row; flex-wrap: wrap; }
+    .menu-grupo { width: 100%; }
+    .com-menu #header, .breadcrumbs, #content { padding-left: 16px; padding-right: 16px; }
+    .messagelist { margin: 0 16px; }
+}
+
+/* ---------- cartões da página inicial ---------- */
+.grupo-titulo { margin: 0 0 10px; font-size: .75rem; font-weight: 500; text-transform: uppercase; letter-spacing: .05em; color: var(--body-quiet-color); background: none; padding: 0; }
+.dashboard .module { background: none; border: 0; border-radius: 0; overflow: visible; margin-bottom: 26px; }
+.cartoes { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; }
+.cartao { background: var(--card-bg); border: 1px solid var(--hairline-color); border-radius: 10px; padding: 14px; display: flex; flex-direction: column; gap: 2px; }
+.cartao-nome a { color: var(--body-quiet-color); text-decoration: none; font-size: .85rem; }
+.cartao strong { font-size: 1.9rem; font-weight: 500; color: #3b3fa8; line-height: 1.2; }
+.cartao-links { font-size: .8rem; margin-top: 6px; color: var(--body-quiet-color); }

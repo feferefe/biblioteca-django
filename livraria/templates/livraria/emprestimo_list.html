@@ -1,0 +1,33 @@
+{% extends "livraria/base.html" %}
+{% block title %}Empréstimos{% endblock %}
+{% block content %}
+<h2>Empréstimos</h2>
+<p><a class="btn" href="{% url 'livraria:emprestimo_create' %}">+ Novo empréstimo</a></p>
+<table>
+    <thead><tr><th>Livro</th><th>Membro</th><th>Emprestado em</th><th>Previsto</th><th>Situação</th><th></th></tr></thead>
+    <tbody>
+    {% for e in emprestimos %}
+        <tr>
+            <td>{{ e.livro.titulo }}</td>
+            <td>{{ e.membro.nome }}</td>
+            <td>{{ e.data_emprestimo|date:"d/m/Y" }}</td>
+            <td>{{ e.data_prevista|date:"d/m/Y" }}</td>
+            <td>
+                {% if e.devolvido %}<span class="pill ok">Devolvido em {{ e.data_devolucao|date:"d/m/Y" }}</span>
+                {% elif e.atrasado %}<span class="pill erro">Atrasado</span>
+                {% else %}Em andamento{% endif %}
+            </td>
+            <td>
+                {% if not e.devolvido %}
+                <form method="post" action="{% url 'livraria:emprestimo_devolver' e.pk %}">
+                    {% csrf_token %}<button class="btn" type="submit">Devolver</button>
+                </form>
+                {% endif %}
+            </td>
+        </tr>
+    {% empty %}
+        <tr><td colspan="6">Nenhum empréstimo registrado.</td></tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

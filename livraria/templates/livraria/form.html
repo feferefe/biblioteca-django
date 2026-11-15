@@ -1,0 +1,12 @@
+{% extends "livraria/base.html" %}
+{% block title %}{{ titulo|default:"Formulário" }}{% endblock %}
+{% block content %}
+<h2>{{ titulo|default:"Formulário" }}</h2>
+<form method="post" class="form">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+    {{ form.as_p }}
+    <button type="submit" class="btn">Salvar</button>
+    <a href="javascript:history.back()">Cancelar</a>
+</form>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends "livraria/base.html" %}
+{% block title %}Painel{% endblock %}
+{% block content %}
+<div class="topo">
+    <h2>Painel</h2>
+    <a class="btn" href="{% url 'livraria:emprestimo_create' %}">Novo empréstimo</a>
+</div>
+<div class="cards">
+    <div class="card"><span>Livros</span><strong>{{ total_livros }}</strong></div>
+    <div class="card"><span>Membros</span><strong>{{ total_membros }}</strong></div>
+    <div class="card"><span>Emprestados</span><strong>{{ emprestimos_ativos }}</strong></div>
+    <div class="card"><span>Em atraso</span><strong class="{% if emprestimos_atrasados %}erro{% endif %}">{{ emprestimos_atrasados }}</strong></div>
+</div>
+<h3>Últimos empréstimos</h3>
+<table>
+    <thead><tr><th>Livro</th><th>Membro</th><th>Situação</th></tr></thead>
+    <tbody>
+    {% for e in ultimos_emprestimos %}
+        <tr>
+            <td>{{ e.livro.titulo }}</td>
+            <td>{{ e.membro.nome }}</td>
+            <td>
+                {% if e.devolvido %}<span class="pill ok">Devolvido</span>
+                {% elif e.atrasado %}<span class="pill erro">Atrasado</span>
+                {% else %}<span class="pill info">Em andamento</span>{% endif %}
+            </td>
+        </tr>
+    {% empty %}
+        <tr><td colspan="3">Nenhum empréstimo registrado.</td></tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
